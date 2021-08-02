@@ -34,6 +34,7 @@ const updateContact = async (contactId, updateContact) => {
 
 const removeContact = async (contactId) => {
   try {
+    // eslint-disable-next-line no-unused-vars
     const result = await Contact.findByIdAndDelete(contactId);
   } catch (error) {
     if (error.message.includes("Cast to ObjectId failed")) {
