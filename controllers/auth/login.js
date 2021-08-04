@@ -1,3 +1,5 @@
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
 const { user: service } = require('../../services');
 
 const login = async (req, res, next) => {
@@ -8,10 +10,17 @@ const login = async (req, res, next) => {
       res.status(400).json({
         status: 'error',
         code: 400,
-        message: "Bad request"
+        message: "Неверный email или password"
       });
+      return
     }
-    const token = "asdbnuyt6gva.bcxjsdfy.7uhncjas";
+
+    const { SECRET_KEY } = process.env;
+
+    const payload = {
+      id: user._id
+    };
+    const token = jwt.sign(payload, SECRET_KEY);
     res.json({
       status: 'success',
       code: 200,
@@ -25,3 +34,12 @@ const login = async (req, res, next) => {
 };
 
 module.exports = login;
+
+// const decodeToken = jwt.decode(token);
+//
+// try {
+//   const result = jwt.verify(token, SECRET_KEY);
+//   console.log(result);
+// } catch (error) {
+//   console.log(error)
+// };
