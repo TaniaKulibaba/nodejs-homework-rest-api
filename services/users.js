@@ -15,8 +15,13 @@ const add = ({ email, password }) => {
 // email, password: hashPassword });
 };
 
+const updateById = (id, updateInfo) => {
+  return User.findByIdAndUpdate(id, updateInfo)
+};
+
 module.exports = {
   getById,
   getOne,
-  add
+  add,
+  updateById
 };
