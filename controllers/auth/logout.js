@@ -5,8 +5,8 @@ const logout = async (req, res, next) => {
     await service.updateById(req.user._id, { token: null });
     res.json({
       status: "success",
-      code: 200,
-      message: "Logout success"
+      code: 204,
+      message: "No Content"
     })
   } catch (error) {
     next(error);

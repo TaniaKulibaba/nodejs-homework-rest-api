@@ -7,10 +7,10 @@ const login = async (req, res, next) => {
   try {
     const user = await service.getOne({ email });
     if (!user || !user.comparePassword(password)) {
-      res.status(400).json({
-        status: 'error',
-        code: 400,
-        message: "Неверный email или password"
+      res.status(401).json({
+        status: 'Unauthorized',
+        code: 401,
+        message: "Email or password is wrong"
       });
       return
     }
@@ -35,12 +35,3 @@ const login = async (req, res, next) => {
 };
 
 module.exports = login;
-
-// const decodeToken = jwt.decode(token);
-//
-// try {
-//   const result = jwt.verify(token, SECRET_KEY);
-//   console.log(result);
-// } catch (error) {
-//   console.log(error)
-// };

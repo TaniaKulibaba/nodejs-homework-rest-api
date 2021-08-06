@@ -1,6 +1,6 @@
 const { user: service } = require('../../services');
 
-const register = async (req, res, next) => {
+const signup = async (req, res, next) => {
   const { email, password } = req.body;
   try {
     const result = await service.getOne({ email });
@@ -8,7 +8,7 @@ const register = async (req, res, next) => {
       res.status(409).json({
         status: 'error',
         code: 409,
-        message: "Already register"
+        message: "Email in use"
       });
       return;
     }
@@ -16,11 +16,11 @@ const register = async (req, res, next) => {
     res.status(201).json({
       status: 'success',
       code: 201,
-      message: 'success'
+      message: 'Created'
     })
   } catch (error) {
     next(error);
   }
 };
 
-module.exports = register;
+module.exports = signup;
