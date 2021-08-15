@@ -6,5 +6,6 @@ const upload = require('../../middleware/multer');
 
 router.get('/current', authenticate, ctrl.getProfile);
 router.patch('/avatars', authenticate, upload.single('avatar'), ctrl.updateAvatar);
+router.post('/verify', ctrl.resendVerifyEmail);
 
 module.exports = router;
